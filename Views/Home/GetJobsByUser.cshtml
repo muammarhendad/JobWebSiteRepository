@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Job_Offers_Website.Models.ApplyForJob>
+
+@{
+    ViewBag.Title = "GetJobsUser";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+ 
+    <div style="padding-top:20px;">
+        <h2><strong>Jobs list That You Applyed</strong> </h2>
+        <br />
+        <p>
+            @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-success" })
+        </p>
+    </div>
+    <table class="table table-bordered border-success">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.job.JobTitle)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.ApplyDate)
+                </th>
+
+                <th></th>
+            </tr>
+         </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.job.JobTitle)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplyDate)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "DetailsOfJob", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+    </table>
